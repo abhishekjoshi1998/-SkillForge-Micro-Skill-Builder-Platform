@@ -12,7 +12,6 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        {/* Public Routes */}
         <Route index element={<HomePage />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="register" element={<RegisterPage />} />
@@ -24,7 +23,6 @@ function App() {
             <Route path="create-course" element={<CreateCoursePage />} />
         </Route>
 
-        {/* Add a 404 Not Found Route Later */}
       </Route>
     </Routes>
   );
