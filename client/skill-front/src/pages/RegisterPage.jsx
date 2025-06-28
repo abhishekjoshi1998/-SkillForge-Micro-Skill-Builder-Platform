@@ -31,10 +31,14 @@ const RegisterPage = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    console.log("Submit button clicked, onSubmit function started.");
+    
     setFormError("");
     if (password !== password2) {
+      console.log("Validation FAILED: Passwords do not match.");
       setFormError("Passwords do not match");
     } else {
+      console.log("Validation PASSED. Calling register() with:", { name, email, role });
       register({ name, email, password, role });
     }
   };

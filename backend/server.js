@@ -6,13 +6,15 @@ require('dotenv').config();
 
 const app = express();
 
-
 connectDB();
 
+const corsOptions = {
+  origin: 'https://skill-forge-micro-skill-builder-pla.vercel.app/',
+  optionsSuccessStatus: 200
+};
 
-app.use(cors()); 
-app.use(express.json({ extended: false })); 
-
+app.use(cors(corsOptions));
+app.use(express.json());
 
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/courses', require('./routes/courses'));

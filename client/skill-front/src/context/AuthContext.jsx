@@ -77,7 +77,9 @@ export const AuthProvider = ({ children }) => {
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
       await loadUser();
     } catch (err) {
-      dispatch({ type: "LOGIN_FAIL", payload: err.response.data.msg });
+      const errorMessage =
+        err.response?.data?.msg || err.message || "An unknown login error occurred.";
+      dispatch({ type: "LOGIN_FAIL", payload: errorMessage });
     }
   };
 
@@ -87,14 +89,16 @@ export const AuthProvider = ({ children }) => {
       dispatch({ type: "REGISTER_SUCCESS", payload: res.data });
       await loadUser();
     } catch (err) {
-      dispatch({ type: "REGISTER_FAIL", payload: err.response.data.msg });
+      const errorMessage =
+        err.response?.data?.msg || err.message || "An unknown registration error occurred.";
+      dispatch({ type: "REGISTER_FAIL", payload: errorMessage });
     }
   };
 
   const logout = () => dispatch({ type: "LOGOUT" });
 
   return (
-    <AuthContext.Provider value={{ ...state, login, register, logout }}>
+    <AuthContext.Provider value={{ ...state, login, register, logout, loadUser }}>
       {children}
     </AuthContext.Provider>
   );
